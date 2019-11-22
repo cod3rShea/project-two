@@ -1,4 +1,17 @@
+/* 
+Red: #e83e5f
+ */
+
+/* base */
+
+.login-button {
+  background-color: #e83e5f;
+  border-color: #ff291c;
+}
+
+
 form.signup,
 form.login {
   margin-top: 50px;
 }
+
