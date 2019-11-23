@@ -26,6 +26,10 @@ module.exports = function(app) {
       });
   });
 
+  app.get("/search", function(req,res) {
+    res.sendFile(path.join(__dirname, "../public/search"));
+  });
+
   // Route for logging user out
   app.get("/logout", function(req, res) {
     req.logout();

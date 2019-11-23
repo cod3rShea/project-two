@@ -7,6 +7,19 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootswatch/3.3.7/lumen/bootstrap.min.css">
   <link href="stylesheets/style.css" rel="stylesheet">
+  <link href="js/search.js">
+  <style>
+    .search-image {
+        object-fit: cover;
+        width: 100%;
+        height: 200px;
+    }
+
+    #results {
+        margin: 20px;
+    }
+  
+  </style>
 </head>
 
 <body>
@@ -45,7 +58,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <script type="text/javascript" src="js/members.js"></script>
     <script type="text/javascript">
-        $(document).ready(function($) {
+        $(document).ready(function() {
             $("#search-btn").on("click", function(e) {
                 e.preventDefault();
 
@@ -54,7 +67,7 @@
                 var search = $("#recipe-search").val().trim();
                 var apiKey = "66d6e337667747b98c1c739d66a19316";
 
-                var queryURL = "https://api.spoonacular.com/food/products/search?query=" + search + "&instructionsRequired=true&number=11&apiKey=" + apiKey;
+                var queryURL = "https://api.spoonacular.com/recipes/search?query=" + search + "&instructionsRequired=true&number=11&apiKey=" + apiKey;
 
                 // AJAX to pull in API URL and "get" method
                 $.ajax({
@@ -67,44 +80,52 @@
 
                     console.log(queryURL);
 
-                    for ( var i = 0; i < result.products.length; i++){
+                    if (result.results.length === 0) {
+                        var noResults = $("<div>").addClass("no-results");
+                        noResults.text("No results found. Try a new search");
 
-                        var recipeTitle = result.products[i].title;
-                        var recipeImgSrc = result.products[i].image;
-                        var recipeId = result.products[i].id;
+                        $("#results").append(noResults);
+                        console.log(result.results.length);
+                    } else {
 
-                        console.log(recipeTitle);
-                        console.log(recipeImgSrc);
-                        console.log(recipeId);
+                        for ( var i = 0; i < result.results.length; i++){
 
-                        var card = $("<div>").addClass("recipe-result card");
-                        card.attr("data-arrayIndex",i);
-    
-                        // card Body div
-                        var cardBody = $("<div>").addClass("card-body");
-                        var cardBodyTitle = $("<h5>").addClass("card-title");
+                            var recipeTitle = result.results[i].title;
+                            var recipeImgSrc = "https://spoonacular.com/recipeImages/" + result.results[i].image;
+                            var recipeId = result.results[i].id;
 
-                        cardBodyTitle.text(recipeTitle);
-                        cardBody.append(cardBodyTitle);
+                            console.log(recipeTitle);
+                            console.log(recipeImgSrc);
+                            console.log(recipeId);
 
-                        // append to card
-                        card.append(cardBody);
+                            var card = $("<div>").addClass("col-md-3 recipe-result card");
+                            card.attr("data-arrayIndex",i);
 
-                        var cardImg = $("<img>").addClass("card-img-top");
-                        cardImg.attr("src", recipeImgSrc);
-                        
-                        cardImg.attr("alt",recipeTitle);
-                        cardImg.attr("id",recipeId);
-                        card.append(cardImg);
-                        
-                        // append to html
-                        $("#results").append(card);
-                    };
+                            var cardImg = $("<img>").addClass("search-image card-img-top");
+                            cardImg.attr("src", recipeImgSrc);
+                            
+                            cardImg.attr("alt",recipeTitle);
+                            cardImg.attr("id",recipeId);
+                            card.append(cardImg);
+
+                            // card Body div
+                            var cardBody = $("<div>").addClass("card-body");
+                            var cardBodyTitle = $("<h5>").addClass("card-title");
+
+                            cardBodyTitle.text(recipeTitle);
+                            cardBody.append(cardBodyTitle);
+
+                            // append to card
+                            card.append(cardBody);
+                            
+                            // append to html
+                            $("#results").append(card);
+                        };
+                    }
                 });
             });
         });
     </script>
-
 </body>
 
 </html>
