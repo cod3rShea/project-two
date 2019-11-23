@@ -4,6 +4,14 @@ Red: #e83e5f
 
 /* base */
 
+
+
+
+.navbar-default .navbar-brand {
+  color:  #e83e5f;
+}
+
+
 .login-button {
   background-color: #e83e5f;
   border-color: #ff291c;
@@ -15,7 +23,19 @@ form.login {
   margin-top: 50px;
 }
 
-/* Profile */
+/* Nav */
+
+.navbar-toggle {
+  float: left;
+}
+
+@media screen and (max-width: 600px) {
+  .navbar {
+    margin-bottom: 0;
+  }  
+}
+
+/* Home */
 
 .row.profile-header {
   background-color: #e83e5f;
