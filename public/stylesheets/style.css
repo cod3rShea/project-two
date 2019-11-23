@@ -1,4 +1,47 @@
+/* 
+Red: #e83e5f
+ */
+
+/* base */
+
+
+
+
+.navbar-default .navbar-brand {
+  color:  #e83e5f;
+}
+
+
+.login-button {
+  background-color: #e83e5f;
+  border-color: #ff291c;
+}
+
+
 form.signup,
 form.login {
   margin-top: 50px;
+}
+
+/* Nav */
+
+.navbar-toggle {
+  float: left;
+}
+
+@media screen and (max-width: 600px) {
+  .navbar {
+    margin-bottom: 0;
+  }  
+}
+
+/* Home */
+
+.row.profile-header {
+  background-color: #e83e5f;
+  color: #fff;
+}
+
+.row.profile-header h2 { 
+  color: #fff;
 }
