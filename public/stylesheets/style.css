@@ -15,3 +15,13 @@ form.login {
   margin-top: 50px;
 }
 
+/* Profile */
+
+.row.profile-header {
+  background-color: #e83e5f;
+  color: #fff;
+}
+
+.row.profile-header h2 { 
+  color: #fff;
+}
