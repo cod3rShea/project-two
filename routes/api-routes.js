@@ -29,7 +29,6 @@ module.exports = function(app) {
       });
   });
 
-  
   // Route for logging user out
   app.get("/logout", function(req, res) {
     req.logout();
@@ -53,3 +52,7 @@ module.exports = function(app) {
     }
   });
 };
+
+  app.get("/search", function(req,res) {
+    res.sendFile(path.join(__dirname, "../public/search"));
+  });
