@@ -52,9 +52,20 @@
         <!--/.container-fluid -->
     </nav>
     <p>Test 5 </p>
-    <script type="text/javascript">
-        var apiKey = "4cc7196cb8a248819a49fe3043bfb694";
 
+    <div class="recipe">
+        <img class="recipe-img">
+    </div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script type="text/javascript">
+
+        str = window.location.href;
+        var res = str.split("=").pop();
+
+        var recipeId = res;
+
+        var apiKey = "4cc7196cb8a248819a49fe3043bfb694";
+        
         var queryURL = "https://api.spoonacular.com/recipes/" + recipeId + "/information?apiKey=" + apiKey;
         // AJAX to pull in API URL and "get" method
         $.ajax({
@@ -63,14 +74,15 @@
         })
             // create function to pull recipe search results
             .then(function (result) {
+                
                 console.log(queryURL);
-                $(document).ready(function () {
-                    $("#search-btn").on("click", function (e) {
-                        e.preventDefault();
-                    });
-                });
+                console.log(result.image);
+
+                jQuery('.recipe-img').attr('src', result.image);
+                
             });
     </script>
 </body>
 
 </html>
+
