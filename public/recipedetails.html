@@ -1,23 +1,60 @@
 <!DOCTYPE html>
 <html lang="en">
-​
-<head>
-    <title>Recipes</title>
+​<head>
+    <title>Recipe</title>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <link rel=“stylesheet” href=“https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css”
-        integrity=“sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T” crossorigin=“anonymous”>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootswatch/3.3.7/lumen/bootstrap.min.css">
     <link href="stylesheets/style.css" rel="stylesheet">
-​
-    
-</head>
-​
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+        integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+        crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+        integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+        crossorigin="anonymous"></script>
+    <!-- ICON LIBRARY -->
+    <script src="https://kit.fontawesome.com/d5fa5f8504.js" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+        integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+        crossorigin="anonymous"></script>
 <body>
-    <p>Test   3</p>
+    <nav class="navbar navbar-default">
+        <div class="container-fluid">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar"
+                    aria-expanded="false" aria-controls="navbar">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand auce-red" href="/">All You Can Eat</a>
+            </div>
+            <div id="navbar" class="navbar-collapse collapse" aria-expanded="false" style="height: 1px;">
+                <ul class="nav navbar-nav">
+                    <li class="active"><a href="/favorites">My Recipes</a></li>
+                    <li class="active"><a href="/search">Search</a></li>
+                    <!-- <li><a href="#">Profile</a></li> -->
+                </ul>
+                <ul class="nav navbar-nav navbar-right">
+                    <li>
+                        <a class="navbar-brand" href="/logout">
+                            Logout
+                        </a>
+                    </li>
+                </ul>
+            </div>
+            <div class="search">
+                <i class="fas fa-search"></i>
+            </div>
+            <!--/.nav-collapse -->
+        </div>
+        <!--/.container-fluid -->
+    </nav>
+    <p>Test 3</p>
     <script type="text/javascript">
-        var apiKey="4cc7196cb8a248819a49fe3043bfb694";
-​
+        var apiKey = "4cc7196cb8a248819a49fe3043bfb694";
+
         var queryURL = "https://api.spoonacular.com/recipes/" + recipeId + "/information?apiKey=" + apiKey;
         // AJAX to pull in API URL and "get" method
         $.ajax({
@@ -33,6 +70,7 @@
                     });
                 });
             });
-            </script>
-</body >
-</html >
+    </script>
+</body>
+
+</html>
