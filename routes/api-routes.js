@@ -35,6 +35,14 @@ module.exports = function(app) {
     res.redirect("/");
   });
 
+  // Route for saving Favorites
+  app.get("/api/favorites", function(req, res) {
+    db.users.findAll({})
+      .then(function(dbUsers) {
+        res.json(dbUsers);
+      });
+  });
+
   // Route for getting some data about our user to be used client side
   app.get("/api/user_data", function(req, res) {
     if (!req.user) {
