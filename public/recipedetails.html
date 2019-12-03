@@ -1,10 +1,12 @@
 <!DOCTYPE html>
 <html lang="en">
-​<head>
+<head>
     <title>Recipe</title>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="stylesheets/reset.css" rel="stylesheet">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootswatch/3.3.7/lumen/bootstrap.min.css">
+    <link href="stylesheets/owl.css" rel="stylesheet">
     <link href="stylesheets/style.css" rel="stylesheet">
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
         integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
@@ -44,17 +46,32 @@
                     </li>
                 </ul>
             </div>
-            <div class="search">
-                <i class="fas fa-search"></i>
-            </div>
             <!--/.nav-collapse -->
         </div>
         <!--/.container-fluid -->
     </nav>
-    <p>Test 5 </p>
+    <div class="container-fluid">
+        <div class="row-fluid">
+            <div class="recipe">
+                <div>
+                    <img class="recipe-img img-fluid img-thumbnail">
+                    <i class="far fa-heart"></i>
+                </div>
+             
+                <h1 class="recipe-name"></h1>
+                <div class="ingrediants-sidebar">
+                    <ul>
 
-    <div class="recipe">
-        <img class="recipe-img">
+                    </ul>
+                </div>
+                <div>
+                    <h2>INSTRUCTIONS</h2>
+                    <div id="slider" class="owl-carousel owl-theme"></div>
+                </div>
+                
+                </div>
+            </div>
+        </div>
     </div>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <script type="text/javascript">
@@ -65,7 +82,7 @@
         var recipeId = res;
 
         var apiKey = "4cc7196cb8a248819a49fe3043bfb694";
-        
+
         var queryURL = "https://api.spoonacular.com/recipes/" + recipeId + "/information?apiKey=" + apiKey;
         // AJAX to pull in API URL and "get" method
         $.ajax({
@@ -74,15 +91,52 @@
         })
             // create function to pull recipe search results
             .then(function (result) {
-                
+
                 console.log(queryURL);
                 console.log(result.image);
 
                 jQuery('.recipe-img').attr('src', result.image);
-                
+                jQuery('.recipe-name').html(result.title).append('<i class="fas fa-sort-down"></i>');
+
+                for (i = 0; i < result.extendedIngredients.length; i++) {
+
+                    jQuery('.ingrediants-sidebar ul').append("<li>" + result.extendedIngredients[i].original + "</li>");
+
+                }
+
+                jQuery('h1.recipe-name').on('click', function(){
+                    jQuery(this).toggleClass('closed')
+                    jQuery('.ingrediants-sidebar').toggle();
+
+                });
+
+                for (j = 0; j < result.analyzedInstructions[0].steps.length; j++) {
+                    jQuery('#slider').append("<div class='item'> <p>" + result.analyzedInstructions[0].steps[j].step + "</p></div>");
+                }
+
+
+
+
+                jQuery(document).ready(function () {
+                    jQuery('.owl-carousel').owlCarousel({
+                        loop: true,
+                        margin: 0,
+                        items: 1,
+                        dots: true,
+                        nav: true,
+                        autoplay: false,
+                        autoplayTimeout: 7000,
+                        autoplayHoverPause: true,
+                        autoHeight: true
+                    })
+                })
+
+
             });
     </script>
+    <script src="js/owl.carousel.js"></script>
+    <script src="js/owl.navigation.js"></script>
+
 </body>
 
 </html>
-

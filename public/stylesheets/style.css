@@ -5,7 +5,9 @@ Red: #e83e5f
 /* base */
 
 
-
+h1 {
+ color: #e83e5f;
+}
 
 .navbar-default .navbar-brand {
   color:  #e83e5f;
@@ -44,4 +46,40 @@ form.login {
 
 .row.profile-header h2 { 
   color: #fff;
+}
+
+/* Recipe */
+
+h1.recipe-name {
+  display: flex;
+  align-items: center;
+}
+
+h1.recipe-name i {
+  font-size: 20px;
+}
+
+h1.recipe-name.closed i {
+  transform: rotate(-90deg);
+}
+
+.owl-dots {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+}
+
+.owl-theme .owl-dots .owl-dot span {
+    width: 13px;
+    height: 13px;
+    margin: 5px 7px;
+    background: transparent;
+    border: 1px solid #E83E5F;
+    display: block;
+    -webkit-backface-visibility: visible;
+    transition: opacity .2s ease;
+    border-radius: 40px;
+}
+.owl-theme .owl-dots .owl-dot.active span {
+  background: #E83E5F;
 }
