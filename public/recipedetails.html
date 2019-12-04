@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <title>Recipe</title>
     <meta charset="UTF-8">
@@ -19,6 +20,7 @@
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
         integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
         crossorigin="anonymous"></script>
+
 <body>
     <nav class="navbar navbar-default">
         <div class="container-fluid">
@@ -53,11 +55,11 @@
     <div class="container-fluid">
         <div class="row-fluid">
             <div class="recipe">
-                <div>
+                <div class="favorites-container">
                     <img class="recipe-img img-fluid img-thumbnail">
                     <i class="far fa-heart"></i>
                 </div>
-             
+
                 <h1 class="recipe-name"></h1>
                 <div class="ingrediants-sidebar">
                     <ul>
@@ -68,10 +70,10 @@
                     <h2>INSTRUCTIONS</h2>
                     <div id="slider" class="owl-carousel owl-theme"></div>
                 </div>
-                
-                </div>
+
             </div>
         </div>
+    </div>
     </div>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <script type="text/javascript">
@@ -92,10 +94,7 @@
             // create function to pull recipe search results
             .then(function (result) {
 
-                console.log(queryURL);
-                console.log(result.image);
-
-                jQuery('.recipe-img').attr('src', result.image);
+                jQuery('.recipe-img').attr('src', result.image).attr('data', recipeId);
                 jQuery('.recipe-name').html(result.title).append('<i class="fas fa-sort-down"></i>');
 
                 for (i = 0; i < result.extendedIngredients.length; i++) {
@@ -104,7 +103,7 @@
 
                 }
 
-                jQuery('h1.recipe-name').on('click', function(){
+                jQuery('h1.recipe-name').on('click', function () {
                     jQuery(this).toggleClass('closed')
                     jQuery('.ingrediants-sidebar').toggle();
 
@@ -113,9 +112,6 @@
                 for (j = 0; j < result.analyzedInstructions[0].steps.length; j++) {
                     jQuery('#slider').append("<div class='item'> <p>" + result.analyzedInstructions[0].steps[j].step + "</p></div>");
                 }
-
-
-
 
                 jQuery(document).ready(function () {
                     jQuery('.owl-carousel').owlCarousel({
@@ -128,9 +124,27 @@
                         autoplayTimeout: 7000,
                         autoplayHoverPause: true,
                         autoHeight: true
-                    })
-                })
+                    });
 
+                    var favoriteID = jQuery('recipe-img').attr('data');
+
+         
+
+
+                    $.get("/api/user_data").then(function(data) {
+                      var test = data.id;
+
+                      jQuery(".recipe-img").on("click", function (event) {
+                            event.preventDefault();
+                            alert(recipeId);
+                            alert(test);
+                        });
+
+                    });
+
+      
+
+                });
 
             });
     </script>

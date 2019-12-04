@@ -18,7 +18,8 @@ module.exports = function(app) {
       firstName: req.body.firstName,
       lastName: req.body.lastName,
       email: req.body.email,
-      password: req.body.password
+      password: req.body.password,
+      myFavorites:req.body.myFavorites,
     })
       .then(function() {
         res.redirect(307, "/api/login");
