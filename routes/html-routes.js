@@ -36,4 +36,8 @@ module.exports = function(app) {
     res.sendFile(path.join(__dirname, "../public/recipedetails.html"));
   });
 
+  app.get("/favorites", isAuthenticated, function(req,res) {
+    res.sendFile(path.join(__dirname, "../public/favorites.html"));
+  });
+
 };
