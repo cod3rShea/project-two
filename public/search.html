@@ -21,18 +21,13 @@
 		crossorigin="anonymous"></script>
   <style>
     .search-image {
-      object-fit: cover;
-      width: 100%;
-      height: 180px;
-    }
-
-    .card-body {
-      height: 40px;
+        object-fit: cover;
+        width: 100%;
+        height: 200px;
     }
 
     #results {
-      margin: 20px;
-      margin-top: 40px;
+        margin: 20px;
     }
 
     #search-btn {
@@ -47,7 +42,8 @@
 </head>
 
 <body>
-  <nav class="navbar navbar-default">
+ <!-- Navigation Bar -->
+ <nav class="navbar navbar-default">
     <div class="container-fluid">
       <div class="navbar-header">
         <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar"
@@ -61,9 +57,9 @@
       </div>
       <div id="navbar" class="navbar-collapse collapse" aria-expanded="false" style="height: 1px;">
         <ul class="nav navbar-nav">
-          <li class="active"><a href="/favorites">My Recipes</a></li>
+          <li class="active"><a href="/favorites">Wall of Favs</a></li>
           <li class="active"><a href="/search">Search</a></li>
-          <li><a href="#">Profile</a></li>
+<!-- <li><a href="#">Profile</a></li> -->
         </ul>
         <ul class="nav navbar-nav navbar-right">
           <li>
@@ -73,12 +69,7 @@
           </li>
         </ul>
       </div>
-      <div class="search">
-          <i class="fas fa-search"></i>
-      </div>
-      <!--/.nav-collapse -->
     </div>
-    <!--/.container-fluid -->
   </nav>
   <div class="container">
     <div class="row">
@@ -90,7 +81,7 @@
         <div class="col-md-6 col-md-offset-3">
             <form class="search">
                 <div class="form-group">
-                  <!-- <i class="fas fa-search"></i> -->
+                  <i class="fas fa-search"></i>
                   <input type="text" class="form-control" id="recipe-search" placeholder="Search...">
                 </div>
                 <button type="submit" class="btn btn-default" id="search-btn">Search</button>
@@ -111,14 +102,12 @@
       $("#search-btn").on("click", function(e) {
         e.preventDefault();
 
-        // clear out any previous search results
-        $("#results").append("");
 
         // create variables for spoonacular API query string
         var search = $("#recipe-search").val().trim();
         var apiKey = "66d6e337667747b98c1c739d66a19316";
 
-        var queryURL = "https://api.spoonacular.com/recipes/search?query=" + search + "&instructionsRequired=true&number=12&apiKey=" + apiKey;
+        var queryURL = "https://api.spoonacular.com/recipes/search?query=" + search + "&instructionsRequired=true&number=11&apiKey=" + apiKey;
 
         // AJAX to pull in API URL and "get" method
         $.ajax({
