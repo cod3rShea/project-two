@@ -83,3 +83,39 @@ h1.recipe-name.closed i {
 .owl-theme .owl-dots .owl-dot.active span {
   background: #E83E5F;
 }
+
+/* search page */
+
+.search-image {
+  object-fit: cover;
+  width: 100%;
+  height: 180px;
+}
+
+.card-body {
+  height: 40px;
+}
+
+#results {
+  margin: 20px;
+  margin-top: 40px;
+}
+
+#search-btn {
+  color: #E85F3E;
+}
+
+.no-results {
+  text-align: center;
+}
+
+/* recipe details page */
+
+.recipe-img {
+  width: 300px;
+}
+
+#heart-icon {
+  font-size: 48px;
+  opacity: .4;
+}
