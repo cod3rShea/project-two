@@ -54,11 +54,10 @@
             <div class="recipe">
                 <div class="favorites-container">
                     <img class="recipe-img img-fluid img-thumbnail">
-                    <i class="far fa-heart"></i>
+                    <i class="far fa-heart" id="heart-icon"></i>
                 </div>
-
                 <h1 class="recipe-name"></h1>
-                <div class="ingrediants-sidebar">
+                <div class="ingredients-sidebar">
                     <ul>
 
                     </ul>
@@ -96,13 +95,13 @@
 
                 for (i = 0; i < result.extendedIngredients.length; i++) {
 
-                    jQuery('.ingrediants-sidebar ul').append("<li>" + result.extendedIngredients[i].original + "</li>");
+                    jQuery('.ingredients-sidebar ul').append("<li>" + result.extendedIngredients[i].original + "</li>");
 
                 }
 
                 jQuery('h1.recipe-name').on('click', function () {
                     jQuery(this).toggleClass('closed')
-                    jQuery('.ingrediants-sidebar').toggle();
+                    jQuery('.ingredients-sidebar').toggle();
 
                 });
 
@@ -125,25 +124,43 @@
 
                     var favoriteID = jQuery('recipe-img').attr('data');
 
-         
-
-
                     $.get("/api/user_data").then(function(data) {
-                      var test = data.id;
+                      var userId = data.id;
 
                       jQuery(".recipe-img").on("click", function (event) {
                             event.preventDefault();
                             alert(recipeId);
-                            alert(test);
-                        });
-
+                            alert(userId);
+                            // on click of heart icon, add recipe id to favorites in database
+                            function addFavorite() {
+                            console.log("Inserting a new favorite...\n");
+                            var query = connection.query(
+                                "UPDATE users SET ? WHERE ?",
+                                [
+                                {
+                                    myFavorite: recipeId
+                                },
+                                {
+                                    id: recipeId
+                                }
+                                ],
+                                function(err, res) {
+                                if (err) throw err;
+                                console.log(res.affectedRows + " user added a new favorite!\n");
+                                }
+                            );
+                            // change icon style
+                            $("#heart-icon").addClass("fas").removeClass("far");
+                        };
                     });
-
-      
-
                 });
 
             });
+
+  // logs the actual query being run
+  console.log(query.sql);
+});
+
     </script>
     <script src="js/owl.carousel.js"></script>
     <script src="js/owl.navigation.js"></script>
