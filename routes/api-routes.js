@@ -19,7 +19,6 @@ module.exports = function(app) {
       lastName: req.body.lastName,
       email: req.body.email,
       password: req.body.password,
-      myFavorites:req.body.myFavorites,
     })
       .then(function() {
         res.redirect(307, "/api/login");
@@ -36,13 +35,42 @@ module.exports = function(app) {
     res.redirect("/");
   });
 
-  // Route for saving Favorites
-  app.get("/api/favorites", function(req, res) {
-    db.users.findAll({})
-      .then(function(dbUsers) {
-        res.json(dbUsers);
+    app.post("/api/favorites", function(req, res) {
+      //console.log()
+      db.User.update(
+        {
+          myFavorite: req.body.myFavorite
+        },
+        {
+          where: {
+            id: req.body.id
+          }
+        }).then(function(dbUser) {
+        res.json(dbUser);
       });
-  });
+    });
+
+  // Route for saving Favorites
+  // app.post("/api/favorites", function(req, res) {
+  //   console.log(req.body.myFavorite);
+  //     db.User.update(
+  //       {  
+  //         myFavorite: req.body.myFavorite
+  //       },
+  //       { 
+  //           where: { 
+  //           id: req.body.userID
+  //           } 
+  //       }
+  //     )
+  //     .then(function() {
+  //       console.log(update);
+  //     })
+  //     .catch(function(err) {
+  //       console.log(err);
+  //       res.status(401).json(err);
+  //     });
+  // });
 
   // Route for getting some data about our user to be used client side
   app.get("/api/user_data", function(req, res) {
@@ -60,5 +88,6 @@ module.exports = function(app) {
       });
     }
   });
+
 };
 
