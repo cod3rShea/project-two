@@ -33,7 +33,7 @@ $(document).ready(function() {
       firstName: firstName,
       lastName: lastName,
       email: email,
-      password: password
+      password: password,
     })
       .then(function(data) {
         window.location.replace("/home");
