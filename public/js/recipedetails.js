@@ -4,7 +4,7 @@ var res = str.split("=").pop();
 
 var myFavorite = res;
 
-var apiKey = "4cc7196cb8a248819a49fe3043bfb694";
+var apiKey = "6b64f6e004ce454cbf8627c24dbac586";
 
 var queryURL = "https://api.spoonacular.com/recipes/" + myFavorite + "/information?apiKey=" + apiKey;
 // AJAX to pull in API URL and "get" method
@@ -15,9 +15,8 @@ $.ajax({
     // create function to pull recipe search results
 .then(function (result) {
 
-        $('.recipe-img').attr('src', result.image).attr('data', myFavorite);
+        $('.recipe-img').css('background-image', 'url(' + result.image + ')').attr('data', myFavorite);
         $('.recipe-name').html(result.title).append('<i class="fas fa-sort-down"></i>');
-
         for (i = 0; i < result.extendedIngredients.length; i++) {
 
             $('.ingredients-sidebar ul').append("<li>" + result.extendedIngredients[i].original + "</li>");

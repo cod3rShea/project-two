@@ -63,6 +63,16 @@ h1.recipe-name.closed i {
   transform: rotate(-90deg);
 }
 
+.recipe-img.img-fluid.img-thumbnail {
+    width: 500px;
+    height: 300px;
+    background-repeat: no-repeat;
+    background-size: cover;
+    position: relative;
+}
+
+
+
 .owl-dots {
   display: flex;
   justify-content: center;
@@ -117,5 +127,8 @@ h1.recipe-name.closed i {
 
 #heart-icon {
   font-size: 48px;
-  opacity: .4;
+  position: absolute;
+  right: 10px;
+  color: #e95275;
+  text-shadow: 2px 2px #4e4e4e;
 }
