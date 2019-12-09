@@ -14,7 +14,10 @@
     "dialect": "mysql"
   },
   "production": {
-    "database": "process.env.MYSQL_DBNAME",
+    "username": "root",
+    "password": "root1234",
+    "database": "auce_dev",
+    "host": "127.0.0.1",
     "dialect": "mysql"
   }
 }
