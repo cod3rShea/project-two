@@ -14,7 +14,7 @@
     "dialect": "mysql"
   },
   "production": {
-    "use_env_variable": "auce_dev",
+    "database": "process.env.MYSQL_DBNAME",
     "dialect": "mysql"
   }
 }
