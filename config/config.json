@@ -1,18 +1,4 @@
 {
-  "development": {
-    "username": "root",
-    "password": "root1234",
-    "database": "auce_dev",
-    "host": "127.0.0.1",
-    "dialect": "mysql"
-  },
-  "test": {
-    "username": "root",
-    "password": "root",
-    "database": "database_test",
-    "host": "127.0.0.1",
-    "dialect": "mysql"
-  },
   "production": {
     "username": "i0me955pnq0swj0",
     "password": "u7ngcoxwtiht74s2",
