@@ -34,22 +34,7 @@ module.exports = function(app) {
     req.logout();
     res.redirect("/");
   });
-
-    app.post("/api/favorites", function(req, res) {
-      //console.log()
-      db.User.update(
-        {
-          myFavorite: req.body.myFavorite
-        },
-        {
-          where: {
-            id: req.body.id
-          }
-        }).then(function(dbUser) {
-        res.json(dbUser);
-      });
-    });
-
+  
   // Route for saving Favorites
   // app.post("/api/favorites", function(req, res) {
   //   console.log(req.body.myFavorite);
